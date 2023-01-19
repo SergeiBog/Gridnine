@@ -17,9 +17,9 @@ class Main {
     public static void main(String[] args) {
         List<Flight> flights = FlightBuilder.createFlights();
         System.out.println("Все полеты:\n" + flights);
-        System.out.println("Полеты, без вылета до текущего момента времени:\n" + new buildFlightWithFilter(flights).flightBeforeNow().createFlights());
-        System.out.println("Полеты, не содержащие сегменты с датой прилёта раньше даты вылета:\n" + new buildFlightWithFilter(flights).segmentsArrivalBeforeNow().createFlights());
-        System.out.println("Полеты, с общим временем на земле менее 2-х часов:\n" + new buildFlightWithFilter(flights).timeOnEarthNotMoreTwoHours().createFlights());
+        System.out.println("Полеты, без вылета до текущего момента времени:\n" + new buildFlightWithFilter(flights).flightBeforeNow().createFilteredFlights());
+        System.out.println("Полеты, не содержащие сегменты с датой прилёта раньше даты вылета:\n" + new buildFlightWithFilter(flights).segmentsArrivalBeforeNow().createFilteredFlights());
+        System.out.println("Полеты, с общим временем на земле менее 2-х часов:\n" + new buildFlightWithFilter(flights).timeOnEarthNotMoreTwoHours().createFilteredFlights());
     }
 }
 
@@ -110,7 +110,7 @@ class Segment {
 }
 
 abstract class flightFilter {
-    abstract List<Flight> createFlights();
+    abstract List<Flight> createFilteredFlights();
 
     abstract flightFilter flightBeforeNow();
 
@@ -127,7 +127,7 @@ class buildFlightWithFilter extends flightFilter {
     }
 
     @Override
-    List<Flight> createFlights() {
+    List<Flight> createFilteredFlights() {
         return flights;
     }
 

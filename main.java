@@ -144,6 +144,7 @@ class buildFlightWithFilter extends flightFilter{
 
     @Override
     flightFilter timeOnEarthMoreTwoHours() {
+
         return null;
     }
 }
